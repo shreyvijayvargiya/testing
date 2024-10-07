@@ -7,6 +7,7 @@ import { FiEdit, FiSearch, FiUser, FiFileText, FiUpload } from "react-icons/fi";
 import router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUserFromStore } from "redux/action/action";
+import { Code2Icon, ProjectorIcon } from "lucide-react";
 
 const LandingPage = () => {
 	const [loginModal, setLoginModal] = useState(false);
@@ -19,14 +20,14 @@ const LandingPage = () => {
 		if (!isUserLoggedIn || allCookies?.uid === undefined) {
 			router.push("/");
 			dispatch(removeUserFromStore());
-		} else if(isUserLoggedIn){
+		} else if (isUserLoggedIn) {
 			router.push("/dashboard");
 		}
 	}, [router.pathname]);
 
 	return (
 		<div className="bg-gray-50 bg-opacity-10 min-h-screen">
-			<header className="h-96 flex justify-center items-start flex-col text-black py-8 text-center md:w-1/2 sm:w-full xxs:w-full xs:w-full mx-auto">
+			<header className="mt-40 flex justify-center items-start flex-col text-black py-8 text-center md:w-1/2 sm:w-full xxs:w-full xs:w-full mx-auto">
 				<h1 className="text-7xl font-bold">Blogit</h1>
 				<h2 className="text-3xl"> Full-Stack Blog Platform Boilerplate</h2>
 				<p className="mt-4 text-lg">
@@ -35,7 +36,32 @@ const LandingPage = () => {
 				</p>
 				<span>Follow the below instructions to get started</span>
 			</header>
-
+			<section className="mx-auto md:w-1/2 w-full flex justify-start items-center gap-4 mb-10">
+				<a
+					href="https://shreyvijayvargiya.gumroad.com/l/blogit"
+					target="_blank"
+				>
+					<Button
+						color="dark"
+						variant="filled"
+						className="hover:translate-x-2 hover:scale-105 transform transition-all duration-200 ease-in"
+						leftIcon={<Code2Icon size={18} />}
+					>
+						Get the boilerplate
+					</Button>
+				</a>
+				<Button
+					color="dark"
+					variant="outline"
+					className="hover:translate-y-2 hover:scale-105 transform transition-all duration-200 ease-in"
+					leftIcon={<ProjectorIcon size={18} />}
+					onClick={() => {
+						setLoginModal(true);
+					}}
+				>
+					Demo
+				</Button>
+			</section>
 			<section className="bg-gray-50 bg-opacity-40 py-12">
 				<div className="container px-6 md:w-1/2 sm:w-full xxs:w-full xs:w-full mx-auto">
 					<h2 className="text-3xl font-semibold mb-8">
@@ -77,14 +103,6 @@ const LandingPage = () => {
 							view your blog platform.
 						</li>
 					</ol>
-					<Button
-						onClick={() => {
-							setLoginModal(true);
-						}}
-						color="dark"
-					>
-						Login with Google
-					</Button>
 				</div>
 			</section>
 
